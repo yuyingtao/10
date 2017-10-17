@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .header{
+            width: 100%;
+            height: 100px;
+            padding-top: 20px;
+            background: #E67E22;
+            color: white;
+            font-size: 40px;
+            text-align: center;
+
+        }
+        .main{
+            width: 100%;
+            background: #E67E22;
+        }
+        .cont{
+            margin: auto;
+            width: 40%;
+            height: 300px;
+            background: #CF4646;
+            color: white;
+            text-align: center;
+            padding-top: 20px;
+
+        }
+        .but{
+            height: 50px;
+            padding-top: 10px;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            //  在浏览器加载完毕后才执行JS代码
+            var butobj = document.getElementById("sub");
+            butobj.onclick = function () {
+                var dataobj = document.getElementById("data");
+                var arrys=new Array(4);
+                var data = parseInt(dataobj.value);
+                if (!isNaN(data)) {
+                    if (999<data&&data<10000) {
+                        var i=3;
+                        var m;
+                        while(data){
+                            t=data%10;
+                            data=parseInt(data/10);
+                            switch (t){
+                                case 0:m="";break;
+                                case 1:m="壹";break;
+                                case 2:m="贰";break;
+                                case 3:m="叁";break;
+                                case 4:m="肆";break;
+                                case 5:m="伍";break;
+                                case 6:m="陆";break;
+                                case 7:m="柒";break;
+                                case 8:m="捌";break;
+                                case 9:m="玖";break;
+                                default:alert("ERROR");
+                            }
+                            arrys[i]=m;
+                            i--;
+                        }
+                    }else {
+                        alert("必须输入4位数");
+                            return false;}
+                } else {
+                    alert("输入的数据有误");
+                    return false;
+                }
+                var varObj=document.getElementById("variout");
+                varObj.value="人民币"+arrys[0]+"仟"+arrys[1]+"佰"+arrys[2]+"拾"+arrys[3]+"圆整";
+            };
+            var subobjClear=document.getElementById("clear");
+            subobjClear.onclick=function () {
+                var inpObj=document.getElementById("data");
+                var varObj=document.getElementById("variout");
+                inpObj.value="";
+                varObj.value="";
+            }
+        }
+
+    </script>
+</head>
+<body>
+<div class="header">
+    <p>人民币大小写转换</p>
+</div>
+<div class="main">
+    <div class="cont" id="cont">
+        <p>请随意输入一个数字（4位整数）</p>
+        <input type="text" id="data">
+        <p>转换后的结果:</p>
+        <input type="text" placeholder="结果" id="variout">
+        <div class="but">
+            <input type="submit" id="sub" value="提交">
+            <input type="submit" id="clear" value="清除">
+        </div>
+    </div>
+</div>
+</body>
+</html>
